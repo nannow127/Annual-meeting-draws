@@ -47,7 +47,7 @@ jobs:
           password: ${{ secrets.REMOTE_PASS }}
           port: ${{ secrets.REMOTE_PORT }}
           source: "docs/"
-          target: your_server_target_folder_path
+          target: "/Annual-meeting-draws"
           
    
         
