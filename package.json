@@ -7,7 +7,9 @@
     "dev": "vue-cli-service serve",
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist -r https://github.com/nannow127/Annual-meeting-draws.git -b gh-pages"
   },
   "dependencies": {
     "core-js": "^3.4.3",
@@ -28,6 +30,7 @@
     "eslint": "^5.16.0",
     "eslint-plugin-prettier": "^3.1.1",
     "eslint-plugin-vue": "^5.0.0",
+    "gh-pages": "^6.1.0",
     "prettier": "^1.19.1",
     "sass-loader": "^10.1.1",
     "vue-template-compiler": "^2.6.10"
