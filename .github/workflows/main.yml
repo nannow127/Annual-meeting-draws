@@ -29,15 +29,25 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
         uses: actions/checkout@v4
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+      - name: Use Node.js
+        uses: actions/setup-node@v4.0.0
         with:
-          # Upload entire repository
-          path: '.'
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v3
+              node-version: "14.x"
+        run: node -v
+      - name: install deps
+        run: npm install
+      - name: build app
+        run: npm run build
+      - name: Deploy # 部署
+        uses: appleboy/scp-action@v0.0.1
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          source: "docs/"
+          target: your_server_target_folder_path
+          
+   
+        
