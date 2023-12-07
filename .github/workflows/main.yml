@@ -42,10 +42,10 @@ jobs:
       - name: Deploy # 部署
         uses: appleboy/scp-action@v0.0.1
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
-          port: ${{ secrets.PORT }}
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASS }}
+          port: ${{ secrets.REMOTE_PORT }}
           source: "docs/"
           target: your_server_target_folder_path
           
