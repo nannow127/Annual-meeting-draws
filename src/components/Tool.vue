@@ -1,9 +1,9 @@
 <template>
   <div id="tool">
+    <el-button class="start" type="primary" @click="startHandler" size="mini">{{
+      running ? 'STOP' : 'START'
+    }}</el-button>
     <div class="bu_style">
-      <el-button @click="startHandler" type="text" size="mini">{{
-        running ? 'STOP' : 'START'
-      }}</el-button>
       <el-button type="text" size="mini" @click="showRemoveoptions = true">
         RESET
       </el-button>
@@ -345,16 +345,23 @@ export default {
 </script>
 <style lang="scss">
 #tool {
-  position: fixed;
   // width: 60px;
 
   // transform: translateY(-50%);
-
+  .start {
+    position: absolute;
+    right: 20px !important;
+    top: 100px;
+  }
   .bu_style {
+    position: absolute;
+
+    top: 5px;
+    right: 150px;
     // background-color: #fff;
     text-align: center;
     display: flex;
-    flex-direction: column;
+    // flex-direction: column;
     .el-button {
       text-align: right;
     }
@@ -362,13 +369,13 @@ export default {
     // justify-content: right;
   }
   //   position: absolute;
-  top: 90px;
-  right: 20px;
+
   // }
-  .el-button + .el-button {
-    margin-top: 0px;
-    margin-left: 0px;
-  }
+
+  // .el-button + .el-button {
+  //   margin-top: 0px;
+  //   margin-left: 0px;
+  // }
 }
 .setwat-dialog {
   .colorred {
