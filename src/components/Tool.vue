@@ -17,7 +17,7 @@
         RESET
       </el-button>
       <el-button
-        style="color:#ffd002;font-size:20px"
+        style="font-size:20px"
         type="text"
         size="mini"
         @click="showImport = true"
@@ -50,21 +50,24 @@
         <el-form-item label=" " v-if="form.category">
           <span>
             共&nbsp;
-            <span class="colorred">{{ config[form.category] }}</span>
+            <span style="color:#ed6807" class="colorred">{{
+              config[form.category]
+            }}</span>
             &nbsp;名
           </span>
           <span :style="{ marginLeft: '20px' }">
             剩余&nbsp;
-            <span class="colorred">{{ remain }}</span>
+            <span style="color:red" class="colorred">{{ remain }}</span>
             &nbsp;名
           </span>
         </el-form-item>
 
-        <el-form-item label="抽取方式">
-          <el-select v-model="form.mode" placeholder="请选取本次抽取方式">
-            <el-option label="抽1人" :value="1"></el-option>
-            <el-option label="抽5人" :value="5"></el-option>
-            <el-option label="一次抽取完" :value="0"></el-option>
+        <el-form-item label="抽取人数">
+          <el-select v-model="form.mode" placeholder="请选择本次抽取人数">
+            <el-option label="全部" :value="0"></el-option>
+            <el-option label="1人" :value="1"></el-option>
+            <el-option label="7人" :value="7"></el-option>
+            <el-option label="10人" :value="10"></el-option>
             <el-option label="自定义" :value="99"></el-option>
           </el-select>
         </el-form-item>
@@ -83,7 +86,7 @@
         <el-form-item label="全员参与">
           <el-switch v-model="form.allin"></el-switch>
           <span :style="{ fontSize: '12px' }">
-            (开启后将在全体成员[无论有无中奖]中抽奖)
+            (开启后无论有无中奖都会参与)
           </span>
         </el-form-item>
 
@@ -128,14 +131,14 @@
       class="c-removeoptions"
       :append-to-body="true"
     >
-      <el-form ref="form" :model="removeInfo" label-width="80px" size="mini">
-        <el-form-item label="重置选项">
+      <el-form ref="form" :model="removeInfo" size="mini" class="form_style">
+        <el-form-item label="" label-width="60px">
           <el-radio-group v-model="removeInfo.type">
-            <el-radio border :label="0">重置全部数据</el-radio>
-            <el-radio border :label="1">重置抽奖配置</el-radio>
-            <el-radio border :label="2">重置名单</el-radio>
-            <el-radio border :label="3">重置照片</el-radio>
             <el-radio border :label="4">重置抽奖结果</el-radio>
+            <el-radio border :label="2">重置名单</el-radio>
+            <el-radio border :label="0">重置全部数据</el-radio>
+            <!-- <el-radio border :label="1">重置抽奖配置</el-radio> -->
+            <!-- <el-radio border :label="3">重置照片</el-radio> -->
           </el-radio-group>
         </el-form-item>
         <el-form-item>
@@ -210,8 +213,8 @@ export default {
       removeInfo: { type: 0 },
       form: {
         category: '',
-        mode: 1,
-        qty: 1,
+        mode: 0,
+        tqy: 1,
         allin: false
       },
       listStr: '',
@@ -294,11 +297,17 @@ export default {
           return this.$message.error('本次抽奖人数已超过本奖项的剩余人数');
         }
       }
-      if (this.form.mode === 1 || this.form.mode === 5) {
+      if (
+        this.form.mode === 7 ||
+        this.form.mode === 1 ||
+        this.form.mode === 10
+      ) {
         if (this.form.mode > this.remain) {
-          return this.$message.error('本次抽奖人数已超过本奖项的剩余人数');
+          return this.$message.error('抽奖人数已超过本奖项的剩余人数');
         }
       }
+      console.log(this.form.mode, '0000000', this.remain);
+
       this.showSetwat = false;
       this.$emit(
         'toggle',
@@ -374,7 +383,6 @@ export default {
 }
 .setwat-dialog {
   .colorred {
-    color: red;
     font-weight: bold;
   }
 }
@@ -386,8 +394,15 @@ export default {
   }
 }
 .c-removeoptions {
+  .form_style,
+  .radio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   .el-dialog {
-    height: 290px;
+    // height: 290px;
   }
   .el-radio.is-bordered + .el-radio.is-bordered {
     margin-left: 0px;

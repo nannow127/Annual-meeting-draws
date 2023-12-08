@@ -359,7 +359,7 @@ export default {
         const { number } = config;
         const { category, mode, qty, remain, allin } = form;
         let num = 1;
-        if (mode === 1 || mode === 5) {
+        if (mode === 7 || mode === 10 || mode === 1) {
           num = mode;
         } else if (mode === 0) {
           num = remain;
@@ -435,14 +435,14 @@ export default {
       flex-direction: column;
       align-items: center;
     }
-    .title {
-      font-size: 20px;
-      text-align: center;
-      color: transparent;
-      background-image: linear-gradient(#f49712, #f4c933);
-      -webkit-background-clip: text;
-      background-clip: text;
-    }
+    // .title {
+    //   font-size: 20px;
+    //   text-align: center;
+    //   color: transparent;
+    //   background-image: linear-gradient(#f49712, #f4c933);
+    //   -webkit-background-clip: text;
+    //   background-clip: text;
+    // }
     .top {
       .title {
         width: 700px;
@@ -466,15 +466,19 @@ export default {
     right: 20px;
     width: 30px;
     height: 30px;
-    line-height: 30px;
-    border: 1px solid #f49712;
+    // line-height: 30px;
+    border: 1px solid #ed6807;
     border-radius: 50%;
     padding: 0;
-    text-align: center;
+    // text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     .iconfont {
-      position: relative;
-      left: 1px;
-      font-size: 12px;
+      text-align: center;
+      // position: relative;
+      // left: 1px;
+      // font-size: 12px;
     }
   }
   .copy-right {
@@ -506,8 +510,9 @@ export default {
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
   p {
-    color: #f49712;
-    font-size: 50px;
+    color: #f4c916;
+    font-size: 70px;
+    font-weight: 700;
     line-height: 120px;
   }
   .container {

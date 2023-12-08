@@ -54,6 +54,27 @@ body {
 }
 .el-button--text:focus,
 .el-button--text,
-.el-button--text:hover {
-  color: #f49712 !important;
+.el-button--text:hover,
+.el-select-dropdown__item.selected {
+  color: #ed6807 !important;
+}
+
+.el-button--primary,
+.el-radio__input.is-checked .el-radio__inner,
+.el-switch.is-checked .el-switch__core {
+  background-color: #ed6807 !important;
+  border-color: #ed6807 !important;
+}
+.el-button--primary:focus,
+.el-button--primary:hover {
+  background-color: #f4c916 !important;
+  border-color: #f4c916 !important;
+}
+.el-radio.is-bordered.is-checked,
+.el-select .el-input.is-focus .el-input__inner,
+.el-select .el-input__inner:focus {
+  border-color: #ed6807 !important;
+}
+.el-radio__input.is-checked + .el-radio__label {
+  color: #ed6807 !important;
 }

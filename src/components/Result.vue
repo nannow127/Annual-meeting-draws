@@ -28,7 +28,11 @@
         {{ item.name }}
       </div>
       <div class="value">
-        <el-tag type="info" v-if="item.value && item.value.length === 0">
+        <el-tag
+          type="info"
+          v-if="item.value && item.value.length === 0"
+          style="background-color: #97cebe;"
+        >
           暂未抽奖
         </el-tag>
         <el-tag
@@ -152,9 +156,12 @@ export default {
     .value {
       // padding: 10px;
       // flex: 1;
-    }
-    .card {
-      margin: 5px;
+      .el-tag {
+        margin: 5px;
+        background-color: #ed6807;
+        border: none;
+        color: #fff;
+      }
     }
   }
 }
