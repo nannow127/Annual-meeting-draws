@@ -1,27 +1,13 @@
 <template>
   <div id="tool">
     <div class="bu_style">
-      <el-button
-        @click="startHandler"
-        style="color:#ffd002;font-size:20px"
-        type="text"
-        size="mini"
-        >{{ running ? 'STOP' : 'START' }}</el-button
-      >
-      <el-button
-        style="color:#ffd002;font-size:20px"
-        type="text"
-        size="mini"
-        @click="showRemoveoptions = true"
-      >
+      <el-button @click="startHandler" type="text" size="mini">{{
+        running ? 'STOP' : 'START'
+      }}</el-button>
+      <el-button type="text" size="mini" @click="showRemoveoptions = true">
         RESET
       </el-button>
-      <el-button
-        style="font-size:20px"
-        type="text"
-        size="mini"
-        @click="showImport = true"
-      >
+      <el-button type="text" size="mini" @click="showImport = true">
         IMPORT LIST
       </el-button>
     </div>
@@ -136,8 +122,8 @@
           <el-radio-group v-model="removeInfo.type">
             <el-radio border :label="4">重置抽奖结果</el-radio>
             <el-radio border :label="2">重置名单</el-radio>
+            <el-radio border :label="1">重置抽奖配置</el-radio>
             <el-radio border :label="0">重置全部数据</el-radio>
-            <!-- <el-radio border :label="1">重置抽奖配置</el-radio> -->
             <!-- <el-radio border :label="3">重置照片</el-radio> -->
           </el-radio-group>
         </el-form-item>
@@ -369,11 +355,14 @@ export default {
     text-align: center;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    .el-button {
+      text-align: right;
+    }
+    // align-items: right;
+    // justify-content: right;
   }
   //   position: absolute;
-  top: 100px;
+  top: 90px;
   right: 20px;
   // }
   .el-button + .el-button {

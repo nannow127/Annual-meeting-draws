@@ -45,7 +45,7 @@ export function conversionCategoryName(key) {
   let name = '';
   switch (key) {
     case 'firstPrize':
-      name = '一等奖(iPhone 15 Pro Max 512G-Gray)';
+      name = '一等奖(iPhone 15 Pro Max)';
       break;
     case 'twoPrize':
       name = '二等奖(Dyson Dust Catcher)';
@@ -54,19 +54,22 @@ export function conversionCategoryName(key) {
       name = '三等奖(Surface Lapto Go 2)';
       break;
     case 'threePrize2':
-      name = '三等奖(iPad mini6-64GB)';
+      name = '三等奖(iPad mini6)';
       break;
     case 'threePrize3':
       name = '三等奖(Dyson Supersonic Hair Dryer)';
       break;
+    case 'threePrize4':
+      name = '三等奖(HUAWEI Watch 3 Pro)';
+      break;
     case 'prizeOne2000':
-      name = '福袋-2000';
+      name = 'Blessing Bag-2000';
       break;
     case 'prizeOne1000':
-      name = '福袋-1000';
+      name = 'Blessing Bag-1000';
       break;
     case 'prizeOne500':
-      name = '福袋-500';
+      name = 'Blessing Bag-500';
       break;
     // case 'prizeTwo2000':
     //   name = '福袋-2000()';

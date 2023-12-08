@@ -506,12 +506,12 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 1280px;
+  width: 100%;
   transform: translateX(-50%) translateY(-50%);
   text-align: center;
   p {
     color: #f4c916;
-    font-size: 70px;
+    font-size: 50px;
     font-weight: 700;
     line-height: 120px;
   }

@@ -19,7 +19,8 @@ export default new Vuex.Store({
       threePrize1: 1,
       threePrize2: 1,
       threePrize3: 4,
-      prizeOne2000: 15,
+      threePrize4: 2,
+      prizeOne2000: 16,
       prizeOne1000: 13,
       prizeOne500: 42
       // prizeOne2000: 8,
@@ -30,6 +31,7 @@ export default new Vuex.Store({
       // prizeTwo500: 10,
       // prizeThree500: 12
     },
+
     result: {
       firstPrize: []
     },
@@ -43,7 +45,7 @@ export default new Vuex.Store({
         key: 'threePrize1'
       },
       {
-        name: '三等奖(iPad mini6-64GB)',
+        name: '三等奖(iPad mini6)',
         key: 'threePrize2'
       },
       {
@@ -51,41 +53,21 @@ export default new Vuex.Store({
         key: 'threePrize3'
       },
       {
-        name: '福袋-2000',
+        name: '三等奖(HUAWEI Watch 3 Pro)',
+        key: 'threePrize4'
+      },
+      {
+        name: 'Blessing Bag-2000',
         key: 'prizeOne2000'
       },
       {
-        name: '福袋-1000',
+        name: 'Blessing Bag-1000',
         key: 'prizeOne1000'
       },
       {
-        name: '福袋-500',
+        name: 'Blessing Bag-500',
         key: 'prizeOne500'
       }
-      // {
-      //   name: '福袋-2000(7)',
-      //   key: 'prizeTwo2000'
-      // },
-      // {
-      //   name: '福袋-1000',
-      //   key: 'prizeOne1000'
-      // },
-      // // {
-      // //   name: '福袋-1000(7)',
-      // //   key: 'prizeTwo1000'
-      // // },
-      // {
-      //   name: '福袋-500(',
-      //   key: 'prizeOne500'
-      // }
-      // {
-      //   name: '福袋-500(10)',
-      //   key: 'prizeTwo500'
-      // },
-      // {
-      //   name: '福袋-500(12)',
-      //   key: 'prizeThree500'
-      // }
     ],
     list: [],
     photos: [],
@@ -101,16 +83,10 @@ export default new Vuex.Store({
         threePrize1: 1,
         threePrize2: 1,
         threePrize3: 4,
-        prizeOne2000: 15,
+        threePrize4: 2,
+        prizeOne2000: 16,
         prizeOne1000: 13,
         prizeOne500: 42
-        // prizeOne2000: 8,
-        // prizeTwo2000: 7,
-        // prizeOne1000: 6,
-        // prizeTwo1000: 7,
-        // prizeOne500: 10,
-        // prizeTwo500: 10,
-        // prizeThree500: 12
       };
       state.newLottery = [
         {
@@ -122,7 +98,7 @@ export default new Vuex.Store({
           key: 'threePrize1'
         },
         {
-          name: '三等奖(iPad mini6-64GB)',
+          name: '三等奖(iPad mini6)',
           key: 'threePrize2'
         },
         {
@@ -130,15 +106,19 @@ export default new Vuex.Store({
           key: 'threePrize3'
         },
         {
-          name: '福袋-2000',
+          name: '三等奖(HUAWEI Watch 3 Pro)',
+          key: 'threePrize4'
+        },
+        {
+          name: 'Blessing Bag-2000',
           key: 'prizeOne2000'
         },
         {
-          name: '福袋-1000',
+          name: 'Blessing Bag-1000',
           key: 'prizeOne1000'
         },
         {
-          name: '福袋-500',
+          name: 'Blessing Bag-500',
           key: 'prizeOne500'
         }
       ];
@@ -163,7 +143,8 @@ export default new Vuex.Store({
         threePrize1: 1,
         threePrize2: 1,
         threePrize3: 4,
-        prizeOne2000: 15,
+        threePrize4: 2,
+        prizeOne2000: 16,
         prizeOne1000: 13,
         prizeOne500: 42
       };
@@ -180,7 +161,7 @@ export default new Vuex.Store({
           key: 'threePrize1'
         },
         {
-          name: '三等奖(iPad mini6-64GB)',
+          name: '三等奖(iPad mini6)',
           key: 'threePrize2'
         },
         {
@@ -188,15 +169,19 @@ export default new Vuex.Store({
           key: 'threePrize3'
         },
         {
-          name: '福袋-2000',
+          name: '三等奖(HUAWEI Watch 3 Pro)',
+          key: 'threePrize4'
+        },
+        {
+          name: 'Blessing Bag-2000',
           key: 'prizeOne2000'
         },
         {
-          name: '福袋-1000',
+          name: 'Blessing Bag-1000',
           key: 'prizeOne1000'
         },
         {
-          name: '福袋-500',
+          name: 'Blessing Bag-500',
           key: 'prizeOne500'
         }
       ];

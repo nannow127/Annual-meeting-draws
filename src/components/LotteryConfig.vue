@@ -31,7 +31,7 @@
             :step="1"
           ></el-input>
         </el-form-item>
-        <el-form-item label="一等奖(iPhone 15 Pro Max 512G-Gray)">
+        <el-form-item label="一等奖(iPhone 15 Pro Max)">
           <el-input
             type="number"
             v-model="form.firstPrize"
