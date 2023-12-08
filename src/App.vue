@@ -462,8 +462,8 @@ export default {
   }
   .audio {
     position: absolute;
-    top: 50px;
-    right: 20px;
+    top: 10px;
+    left: 20px;
     width: 30px;
     height: 30px;
     // line-height: 30px;
@@ -471,11 +471,11 @@ export default {
     border-radius: 50%;
     padding: 0;
     // text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
     .iconfont {
-      text-align: center;
+      // text-align: center;
       // position: relative;
       // left: 1px;
       // font-size: 12px;

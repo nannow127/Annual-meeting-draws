@@ -350,18 +350,18 @@ export default {
   // transform: translateY(-50%);
   .start {
     position: absolute;
-    right: 20px !important;
-    top: 100px;
+    right: 20px;
+    top: 50px;
   }
   .bu_style {
     position: absolute;
 
-    top: 5px;
-    right: 150px;
+    top: 100px;
+    right: 20px;
     // background-color: #fff;
     text-align: center;
     display: flex;
-    // flex-direction: column;
+    flex-direction: column;
     .el-button {
       text-align: right;
     }

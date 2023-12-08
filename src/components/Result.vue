@@ -10,7 +10,6 @@
       <span :style="{ fontSize: '18px' }">
         抽奖结果
       </span>
-      导出
       <!-- <span :style="{ fontSize: '14px', color: '#999', marginLeft: '10px' }">
         (点击号码可以删除)
       </span> -->
