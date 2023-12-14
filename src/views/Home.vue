@@ -1,5 +1,6 @@
 <template>
   <div class="home">
+    <qrcode></qrcode>
     <div id="main"></div>
     <el-button @click="handlerAdd">新建</el-button>
     <el-table border background :data="tableData" stripe style="width: 100%">
@@ -123,9 +124,11 @@ echarts.use([
   CanvasRenderer
 ]);
 
+import qrcode from './qrcode.vue';
 export default {
   name: 'home',
 
+  components: { qrcode },
   data() {
     return {
       dialogVisible: false,
