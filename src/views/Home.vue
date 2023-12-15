@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div id="main"></div>
-    <el-button @click="handlerAdd">新建</el-button>
+    <el-button @click="handlerAdd('add')">新建</el-button>
     <el-table border background :data="tableData" stripe style="width: 100%">
       <el-table-column
         v-for="(item, index) in tableTitle"
@@ -12,7 +12,10 @@
       </el-table-column>
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
-          <el-button @click="handleClick(scope.row)" type="text" size="small"
+          <el-button
+            @click="handleClick('look', scope.row)"
+            type="text"
+            size="small"
             >查看</el-button
           >
           <el-button type="text" size="small">编辑</el-button>
@@ -20,7 +23,7 @@
       </el-table-column>
     </el-table>
     <el-dialog
-      title="新建活动"
+      :title="`${mainType}活动`"
       :visible.sync="dialogVisible"
       :before-close="handleClose"
     >
@@ -102,22 +105,25 @@
           ></el-input>
         </el-form-item>
       </el-form>
-      参与人员信息
-      <el-table
-        border
-        background
-        :data="visitorTableDate"
-        stripe
-        style="width: 100%"
-      >
-        <el-table-column
-          v-for="(item, index) in visitorTableTitle"
-          :key="index"
-          :prop="item.prop"
-          :label="item.label"
+      <div v-show="mainType === 'look'">
+        参与人员信息
+        <el-table
+          border
+          background
+          :data="visitorTableDate"
+          stripe
+          style="width: 100%"
         >
-        </el-table-column>
-      </el-table>
+          <el-table-column
+            v-for="(item, index) in visitorTableTitle"
+            :key="index"
+            :prop="item.prop"
+            :label="item.label"
+          >
+          </el-table-column>
+        </el-table>
+      </div>
+
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="handleSubmitForm('ruleForm')"
           >保存</el-button
@@ -147,6 +153,7 @@ import { LabelLayout, UniversalTransition } from 'echarts/features';
 // 引入 Canvas 渲染器，注意引入 CanvasRenderer 或者 SVGRenderer 是必须的一步
 import { CanvasRenderer } from 'echarts/renderers';
 
+import { getData, attendField } from '@/helper/index';
 // 注册必须的组件
 echarts.use([
   TitleComponent,
@@ -164,6 +171,7 @@ export default {
   name: 'home',
   data() {
     return {
+      mainType: '', //弹框类型
       gradeList: [],
       dialogVisible: false,
       ruleForm: {
@@ -213,7 +221,7 @@ export default {
         { label: '学院', prop: 'house' },
         { label: '班级', prop: 'form' }
       ],
-      visitorTableDate: [{}],
+      visitorTableDate: getData(attendField),
       tableData: [
         {
           value1: 'test1',
@@ -242,7 +250,8 @@ export default {
       console.log(file);
       // reader.readAsArrayBuffer(file);
     },
-    handleClick(form) {
+    handleClick(type, form) {
+      this.mainType = type;
       console.log(form);
       this.ruleForm = form;
       this.dialogVisible = true;
@@ -257,6 +266,8 @@ export default {
     //   //   .catch(_ => {});
     // },
     handlerAdd() {
+      this.mainType = 'add';
+      this.ruleForm = {};
       this.dialogVisible = true;
     },
     handleSubmitForm(formName) {

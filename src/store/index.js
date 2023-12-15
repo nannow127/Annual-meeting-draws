@@ -4,13 +4,17 @@ import {
   setData,
   resultField,
   newLotteryField,
-  listField
+  listField,
+  studentField,
+  attendField
 } from '@/helper/index';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    studentList: [],
+    attendList: [],
     config: {
       name: '2023 Huili',
       number: 70,
@@ -74,6 +78,14 @@ export default new Vuex.Store({
     allList: []
   },
   mutations: {
+    setStudentList(state, list) {
+      state.studentList = list;
+      setData(studentField, state.studentList);
+    },
+    setAttendList(state, list) {
+      state.attendList = list;
+      setData(attendField, state.attendList);
+    },
     setClearConfig(state) {
       state.config = {
         name: '2023 Huili',
@@ -204,7 +216,6 @@ export default new Vuex.Store({
       setData(newLotteryField, state.newLottery);
     },
     setList(state, list) {
-      // console.log(state, list, '890809890');
       const arr = state.list;
       list.forEach(item => {
         const arrIndex = arr.findIndex(data => data.key === item.key);
@@ -217,6 +228,7 @@ export default new Vuex.Store({
       state.list = arr;
       setData(listField, arr);
     },
+
     setPhotos(state, photos) {
       state.photos = photos;
     }

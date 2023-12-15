@@ -26,28 +26,40 @@
 </template>
 
 <script>
-import { readExcelToJson, saveJsonToExcel } from '@/helper/xlsx';
-
+// saveJsonToExcel
+import { readExcelToJson } from '@/helper/xlsx';
+import { getData, studentField } from '@/helper/index';
 export default {
+  computed: {
+    getStudentList: {
+      get() {
+        return this.$store.state.studentList;
+      }
+    }
+  },
   data() {
     return {
       file: null,
-      tableData: []
+      tableData: getData(studentField)
     };
   },
 
+  created() {
+    console.log(getData(studentField), '----getStudentList');
+  },
   methods: {
     // 读取文件为json数据
     onUploadChange(file) {
-      console.log(file);
       this.file = file;
       readExcelToJson(file).then(res => {
-        this.tableData = res;
+        this.$store.commit('setStudentList', res);
       });
+
+      // this.$store.commit('setList', list);
     },
 
     handleDownload() {
-      saveJsonToExcel(this.tableData, this.file.name);
+      // saveJsonToExcel(this.tableData, this.file.name);
     }
   }
 };

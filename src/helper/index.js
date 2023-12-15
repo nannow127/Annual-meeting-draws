@@ -41,6 +41,9 @@ export const configField = 'config'; // 配置数据
 export const resultField = 'result'; // 抽奖结果
 export const newLotteryField = 'newLottery'; // 新增奖项
 export const listField = 'list'; // 名单
+export const studentField = 'studentList'; // 学生名单
+export const attendField = 'attendList' || []; // 参与人员名单
+
 export function conversionCategoryName(key) {
   let name = '';
   switch (key) {

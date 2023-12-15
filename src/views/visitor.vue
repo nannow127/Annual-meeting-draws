@@ -4,6 +4,7 @@
     <h3>本次活动时间</h3>
     <h3>本次活动主讲人</h3>
     <h3>本次活动针对人群</h3>
+    {{ studentAllList }}
 
     <el-form
       :model="ruleForm"
@@ -12,8 +13,12 @@
       class="demo-form-inline"
       label-width="100px"
     >
-      <el-form-item label="年级" prop="value1">
-        <el-select v-model="ruleForm.value1" placeholder="请选择">
+      <el-form-item label="年级" prop="grade">
+        <el-select
+          v-model="ruleForm.grade"
+          @change="handleBlur"
+          placeholder="请选择"
+        >
           <el-option
             v-for="item in gradeList"
             :key="item.value"
@@ -23,27 +28,25 @@
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="姓名" prop="state2">
+      <el-form-item label="英文姓名" prop="englishName">
         <el-autocomplete
           class="inline-input"
           value-key="englishName"
-          v-model="ruleForm.state2"
+          v-model="ruleForm.englishName"
           placeholder="请输入内容"
           :fetch-suggestions="querySearch"
           :trigger-on-focus="false"
           @select="handleSelectBlur"
         ></el-autocomplete>
       </el-form-item>
-      <el-form-item label="年级" prop="input1">
-        <el-input v-model="ruleForm.input1" readonly></el-input>
+      <el-form-item label="中文姓名" prop="name">
+        <el-input v-model="ruleForm.name" readonly></el-input>
       </el-form-item>
-
-      <el-form-item label="班级" prop="input2">
-        <el-input v-model="ruleForm.input2" readonly></el-input>
+      <el-form-item label="班级" prop="form">
+        <el-input v-model="ruleForm.form" readonly></el-input>
       </el-form-item>
-
-      <el-form-item label="学院" prop="input3">
-        <el-input v-model="ruleForm.input3" readonly></el-input>
+      <el-form-item label="学院" prop="house">
+        <el-input v-model="ruleForm.house" readonly></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleSubmitForm('ruleForm')"
@@ -56,94 +59,49 @@
 </template>
 <script>
 // import LotteryConfig from '@/components/LotteryConfig';
-import { studentList, gradeList } from '@/components/data';
+import { gradeList } from '@/components/data';
+import { getData, studentField, attendField } from '@/helper/index';
 export default {
   name: 'App',
 
   components: {},
 
-  created() {},
-
   data() {
     return {
       gradeList,
-      studentList,
+      studentList: [],
+      studentAllList: getData(studentField),
       ruleForm: {
-        value1: '',
-        input1: '',
-        input2: '',
-        input3: '',
-        input4: '',
-        state2: ''
+        name: '',
+        englishName: '',
+        grade: '',
+        form: '',
+        house: '',
+        id: ''
       },
       rules: {
         value1: [{ required: true, message: '请输入年级', trigger: 'blur' }],
         state2: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
       },
       //签到成功的数据列表
-      clockList: []
+      attendList: []
     };
+  },
+  created() {
+    console.log(this.studentList, '---studentList');
   },
   methods: {
     loadAll() {
-      return [
-        {
-          emil: '1',
-          name: '',
-          englishName: '张三',
-          grade: 'G1',
-          form: '1B',
-          house: 'A'
-        },
-
-        {
-          emil: '2',
-          name: '',
-          englishName: '张三',
-          grade: 'G2',
-          form: '2B',
-          house: 'A'
-        },
-        {
-          emil: '3',
-          name: '',
-          englishName: '王五',
-          grade: 'G2',
-          form: '1C',
-          house: 'N'
-        },
-        {
-          emil: '4',
-          name: '',
-          englishName: '家',
-          grade: 'G1',
-          form: '1A',
-          house: 'B'
-        },
-        {
-          emil: '5',
-          name: '',
-          englishName: '医',
-          grade: 'G3',
-          form: '1C',
-          house: 'D'
-        },
-        {
-          emil: '6',
-          name: '',
-          englishName: '丙丁',
-          grade: 'G1',
-          form: '1A',
-          house: 'C'
-        }
-      ];
+      return getData(studentField);
     },
     // 显示当前孩子的信息
-    A({ emil, grade, form, house }) {
-      this.ruleForm.input1 = grade;
-      this.ruleForm.input2 = form;
-      this.ruleForm.input3 = house;
-      this.ruleForm.input4 = emil;
+    A({ id, grade, form, house, name, englishName }) {
+      this.ruleForm.grade = grade;
+      this.ruleForm.form = form;
+      this.ruleForm.house = house;
+      this.ruleForm.id = id;
+      this.ruleForm.name = name;
+      this.ruleForm.englishName = englishName;
       // let list = [];
       // this.studentList.map(item => {
       //   if (item.emil === emil) {
@@ -154,6 +112,21 @@ export default {
       // });
       // this.studentList = list;
       // console.log(list);
+    },
+    handleBlur(value) {
+      let list = [];
+      this.ruleForm.form = '';
+      this.ruleForm.house = '';
+      this.ruleForm.id = '';
+      this.ruleForm.name = '';
+      this.ruleForm.englishName = '';
+      getData(studentField).map(item => {
+        if (item.grade === value) {
+          list.push(item);
+        }
+      });
+      this.studentList = list;
+      console.log(this.studentList, '---handleBlur');
     },
     querySearch(queryString, cd) {
       var studentList = this.studentList;
@@ -180,11 +153,14 @@ export default {
       console.log(event, 'handleSelectBlur');
     },
     handleSubmitForm(formName) {
+      // let list = [];
+      console.log(getData(attendField));
       this.$refs[formName].validate(valid => {
-        console.log(this.ruleForm);
+        console.log(this.ruleForm, 'this.attendList', this.attendList);
         if (valid) {
-          this.clockList.push(this.ruleForm);
-          console.log(this.clockList);
+          this.attendList.push(this.ruleForm);
+          // console.log(this.attendList);
+          this.$store.commit('setAttendList', this.attendList);
         } else {
           return false;
         }
@@ -195,7 +171,7 @@ export default {
     }
   },
   mounted() {
-    this.studentList;
+    this.studentList = this.loadAll();
   }
 };
 </script>

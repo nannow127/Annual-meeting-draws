@@ -62,5 +62,41 @@ export const gradeList = [
   {
     value: 'G3',
     label: 'G3'
+  },
+  {
+    value: 'G4',
+    label: 'G4'
+  },
+  {
+    value: 'G5',
+    label: 'G5'
+  },
+  {
+    value: 'G6',
+    label: 'G6'
+  },
+  {
+    value: 'G7',
+    label: 'G7'
+  },
+  {
+    value: 'G8',
+    label: 'G8'
+  },
+  {
+    value: 'G9',
+    label: 'G9'
+  },
+  {
+    value: 'G10',
+    label: 'G10'
+  },
+  {
+    value: 'G11',
+    label: 'G11'
+  },
+  {
+    value: 'G12',
+    label: 'G12'
   }
 ];
