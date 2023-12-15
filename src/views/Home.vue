@@ -23,7 +23,6 @@
     <el-dialog
       title="新建活动"
       :visible.sync="dialogVisible"
-      width="30%"
       :before-close="handleClose"
     >
       <el-form
@@ -39,6 +38,28 @@
             readonly
             placeholder="请输入内容"
           ></el-input>
+        </el-form-item>
+        <el-form-item label="活动时间" required>
+          <el-col :span="11">
+            <el-form-item prop="date1">
+              <el-date-picker
+                type="date"
+                placeholder="选择日期"
+                v-model="ruleForm.date1"
+                style="width: 100%;"
+              ></el-date-picker>
+            </el-form-item>
+          </el-col>
+          <el-col class="line" :span="2">-</el-col>
+          <el-col :span="11">
+            <el-form-item prop="date2">
+              <el-time-picker
+                placeholder="选择时间"
+                v-model="ruleForm.date2"
+                style="width: 100%;"
+              ></el-time-picker>
+            </el-form-item>
+          </el-col>
         </el-form-item>
         <el-form-item label="类型" prop="value1">
           <el-select v-model="ruleForm.value1" placeholder="请选择">
@@ -82,12 +103,27 @@
           ></el-input>
         </el-form-item>
       </el-form>
-
+      参与人员信息
+      <el-table
+        border
+        background
+        :data="visitorTableDate"
+        stripe
+        style="width: 100%"
+      >
+        <el-table-column
+          v-for="(item, index) in visitorTableTitle"
+          :key="index"
+          :prop="item.prop"
+          :label="item.label"
+        >
+        </el-table-column>
+      </el-table>
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="handleSubmitForm('ruleForm')"
           >保存</el-button
         >
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
+        <el-button @click="handleClose('ruleForm')">重置</el-button>
       </span>
     </el-dialog>
   </div>
@@ -131,6 +167,7 @@ export default {
   components: { qrcode },
   data() {
     return {
+      gradeList: [],
       dialogVisible: false,
       ruleForm: {
         value1: '',
@@ -138,40 +175,76 @@ export default {
         input2: '',
         input3: '',
         input4: '',
+        date1: '',
+        date2: '',
         state2: ''
       },
       rules: {
         value1: [{ required: true, message: '请输入年级', trigger: 'blur' }],
-        state2: [{ required: true, message: '请输入姓名', trigger: 'blur' }]
+        state2: [{ required: true, message: '请输入姓名', trigger: 'blur' }],
+        date1: [
+          {
+            type: 'date',
+            required: true,
+            message: '请选择日期',
+            trigger: 'change'
+          }
+        ],
+        date2: [
+          {
+            type: 'date',
+            required: true,
+            message: '请选择时间',
+            trigger: 'change'
+          }
+        ]
       },
       tableTitle: [
-        { label: '标题', prop: 'name' },
-        { label: '主讲人', prop: 'name' },
-        { label: '时间', prop: 'name' },
-        { label: '位置', prop: 'name' },
-        { label: '人数', prop: 'name' },
-        { label: '对象', prop: 'name' },
-        { label: '类型', prop: 'name' }
+        { label: '标题', prop: 'value1' },
+        { label: '主讲人', prop: 'input1' },
+        { label: '时间', prop: 'input2' },
+        { label: '位置', prop: 'input3' },
+        { label: '人数', prop: 'input4' },
+        { label: '对象', prop: 'state2' },
+        { label: '类型', prop: 'input2' }
       ],
+      visitorTableTitle: [
+        { label: '邮件', prop: 'emil' },
+        { label: '姓名', prop: 'name' },
+        { label: '英文名字', prop: 'englishName' },
+        { label: '年级', prop: 'grade' },
+        { label: '学院', prop: 'house' },
+        { label: '班级', prop: 'form' }
+      ],
+      visitorTableDate: [{}],
       tableData: [
         {
-          date: '2016-05-02',
-          name: '王小虎',
-          address: '上海市普陀区金沙江路 1518 弄'
+          value1: 'test1',
+          input1: 'test1',
+          input2: 'test1',
+          input3: 'test1',
+          input4: 'test1',
+          state2: 'test1'
         }
       ]
     };
   },
   created() {},
   methods: {
-    handleClose(done) {
-      console.log(done);
-      // this.$confirm('确认关闭？')
-      //   .then(_ => {
-      //     done();
-      //   })
-      //   .catch(_ => {});
+    handleClick(form) {
+      console.log(form);
+      this.ruleForm = form;
+      this.dialogVisible = true;
     },
+    // handleClose(done) {
+    //   this.dialogVisible = false;
+    //   console.log(done);
+    //   // this.$confirm('确认关闭？')
+    //   //   .then(_ => {
+    //   //     done();
+    //   //   })
+    //   //   .catch(_ => {});
+    // },
     handlerAdd() {
       this.dialogVisible = true;
     },
@@ -184,7 +257,8 @@ export default {
         }
       });
     },
-    resetForm(formName) {
+    handleClose(formName) {
+      this.dialogVisible = false;
       this.$refs[formName].resetFields();
     }
   },

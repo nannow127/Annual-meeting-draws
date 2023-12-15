@@ -1,7 +1,11 @@
 <template>
   <div>
+    <h3>本次活动标题</h3>
+    <h3>本次活动时间</h3>
+    <h3>本次活动主讲人</h3>
+    <h3>本次活动针对人群</h3>
+
     <el-form
-      :inline="true"
       :model="ruleForm"
       :rules="rules"
       ref="ruleForm"
@@ -30,28 +34,16 @@
           @select="handleSelectBlur"
         ></el-autocomplete>
       </el-form-item>
-      <el-form-item label="活动名称" prop="input1">
-        <el-input
-          v-model="ruleForm.input1"
-          readonly
-          placeholder="请输入内容"
-        ></el-input>
+      <el-form-item label="年级" prop="input1">
+        <el-input v-model="ruleForm.input1" readonly></el-input>
       </el-form-item>
 
-      <el-form-item label="活动名称" prop="input2">
-        <el-input
-          v-model="ruleForm.input2"
-          readonly
-          placeholder="请输入内容"
-        ></el-input>
+      <el-form-item label="班级" prop="input2">
+        <el-input v-model="ruleForm.input2" readonly></el-input>
       </el-form-item>
 
-      <el-form-item label="活动名称" prop="input3">
-        <el-input
-          v-model="ruleForm.input3"
-          readonly
-          placeholder="请输入内容"
-        ></el-input>
+      <el-form-item label="学院" prop="input3">
+        <el-input v-model="ruleForm.input3" readonly></el-input>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="handleSubmitForm('ruleForm')"

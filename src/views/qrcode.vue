@@ -16,12 +16,12 @@ export default {
   },
   mounted() {
     this.initQrCode();
-    this.generateQRCode();
+    // this.generateQRCode();
   },
   methods: {
     initQrCode() {
       this.qrcode = new QRCode('qrinvitecode', {
-        text: 'http://192.168.5.17:8080/#/',
+        text: 'http://172.22.74.11:8080/#/visitor',
         render: 'canvas',
         width: 150,
         height: 150
