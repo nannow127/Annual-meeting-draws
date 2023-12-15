@@ -1,0 +1,18 @@
+.h {
+  height: 100%;
+  &-auto {
+    height: auto;
+  }
+  @for $i from 0 through 100 {
+    &_#{$i} {
+      height: #{$i}px;
+    }
+  }
+}
+.l-h {
+  @for $i from 0 through 100 {
+    &_#{$i} {
+      line-height: #{$i}px;
+    }
+  }
+}

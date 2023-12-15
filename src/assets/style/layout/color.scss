@@ -1,0 +1,64 @@
+
+$ccc: #ccc;
+$six: #666;
+$textRed: #ed4337;
+$borTitBg:rgb(250, 250, 250);
+$subt: #999;
+$main: #333;
+$wri: #ff3b30;
+$url: #18447E;
+
+$fff: #fff;
+$f4: #f4f4f4;
+$f5: #f5f5f5;
+$fa:#FAFAFA;
+$borderCo: #EBEEF5;
+// $borderCo:#eee;
+
+$f8: #f8f8f8;
+$priLight: #F0F7FF;
+$colors: (
+  (key: textRed, val: #ed4337),
+  (key: subt, val: #999),
+  (key: main, val: #333),
+  (key: wri, val: #df2322),
+  (key: textGr, val: #3DCE3E),
+  (key: urlText, val: #18447E),
+
+  (key: 555, val: #555),
+  (key: 999, val: #999),
+  (key: 222, val: #222),
+  (key: fff, val: #fff),
+
+);
+
+$bgColors: (
+  (key: fff, val: #fff),
+  (key: f4, val: $f4),
+  (key: f8, val: #f8f8f8),
+  (key: pri, val: #1677ff),
+  (key: priLight, val: #e7f1ff),
+  (key: textRed, val: #df2322),
+
+  (key: f6, val: #f6f6f6),
+  (key: e7, val: #F0F2F5),
+  (key: e8, val: #866464),
+  (key: e6, val: #e6e6e6),
+  (key: f8, val: #f8f8f8),
+  (key: 555, val: #555),
+  (key: m1, val: #F0F7FF),
+);
+
+@for $i from 1 through length($colors) {
+  $item: nth($colors, $i);
+  .co_#{map-get($item, key)} {
+    color: map-get($item, val);
+  }
+}
+
+@for $i from 1 through length($bgColors) {
+  $item: nth($bgColors, $i);
+  .bg-co_#{map-get($item, key)} {
+    background-color: map-get($item, val);
+  }
+}

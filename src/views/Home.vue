@@ -1,6 +1,5 @@
 <template>
   <div class="home">
-    <qrcode></qrcode>
     <div id="main"></div>
     <el-button @click="handlerAdd">新建</el-button>
     <el-table border background :data="tableData" stripe style="width: 100%">
@@ -130,6 +129,7 @@
 </template>
 
 <script>
+import XLSX from 'xlsx';
 // 引入 echarts 核心模块，核心模块提供了 echarts 使用必须要的接口。
 import * as echarts from 'echarts/core';
 // 引入柱状图图表，图表后缀都为 Chart
@@ -160,11 +160,8 @@ echarts.use([
   CanvasRenderer
 ]);
 
-import qrcode from './qrcode.vue';
 export default {
   name: 'home',
-
-  components: { qrcode },
   data() {
     return {
       gradeList: [],
@@ -231,6 +228,20 @@ export default {
   },
   created() {},
   methods: {
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      const reader = new FileReader();
+      reader.onload = e => {
+        const data = new Uint8Array(e.target.result);
+        const workbook = XLSX.read(data, { type: 'array' });
+        const sheetName = workbook.SheetNames[0];
+        const sheet = workbook.Sheets[sheetName];
+        const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+        console.log(jsonData);
+      };
+      console.log(file);
+      // reader.readAsArrayBuffer(file);
+    },
     handleClick(form) {
       console.log(form);
       this.ruleForm = form;

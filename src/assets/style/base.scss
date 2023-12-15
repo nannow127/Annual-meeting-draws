@@ -78,3 +78,7 @@ body {
 .el-radio__input.is-checked + .el-radio__label {
   color: #ed6807 !important;
 }
+.el-input__inner,
+.el-select {
+  width: 100% !important;
+}
