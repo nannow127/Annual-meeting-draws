@@ -1,0 +1,35 @@
+.w {
+  &-auto {
+      width: auto;
+  }
+  @for $i from 0 through 100 {
+      &_#{$i} {
+          width: #{$i}px;
+      }
+  }
+}
+.z-index {
+    @for $i from 0 through 100 {
+        &_#{$i} {
+            z-index: #{$i};
+        }
+    }
+}
+.w100 {
+  width: 100%!important;
+}
+.w50 {
+  width: 50%!important;
+}
+.w33 {
+  width: 33.33%!important;
+}
+.w25 {
+  width: 25%!important;
+}
+.w20 {
+  width: 20%!important;
+}
+.w15 {
+  width: 15%!important;
+}

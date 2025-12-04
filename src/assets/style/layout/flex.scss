@@ -1,0 +1,76 @@
+// flex
+.flex {
+  display: flex;
+  @for $i from 1 through 4 {
+    &_#{$i} {
+      flex: $i;
+    }
+  }
+
+  &-direction {
+    &-column {
+      flex-direction: column;
+    }
+  }
+  &-row {
+    flex-direction: row;
+  }
+  &-row-reverse {
+    flex-direction: row-reverse;
+  }
+  &-column {
+    flex-direction: column;
+  }
+  &-column-reverse {
+    flex-direction: column-reverse;
+  }
+  &-wrap {
+    flex-wrap: wrap;
+  }
+}
+  // justify-content属性用于定义如何沿着主轴方向排列子容器。
+.justify {
+  &-start {
+    justify-content: flex-start;
+  }
+  &-end {
+    justify-content: flex-end;
+  }
+  &-between { //子容器沿主轴均匀分布，位于首尾两端的子容器与父容器相切
+    justify-content: space-between;
+  }
+  &-around { //子容器沿主轴均匀分布，位于首尾两端的子容器到父容器的距离是子容器间距的一半。
+    justify-content: space-around;
+  }
+  &-center {
+    justify-content: center;
+  }
+}
+ // align-items属性用于定义如何沿着交叉轴方向分配子容器的间距。
+.align {
+  &-start { //起始端对齐
+    align-items:flex-start;
+  }
+  &-center { //居中对齐
+    align-items:center;
+  }
+  &-baseline { //基线对齐，这里的baseline默认是指首行文字，即first baseline，所有子容器向基线对齐，交叉轴起点到元素基线距离最大的子容器将会与交叉轴起始端相切以确定基线。
+    align-items:baseline;
+  }
+  &-end { //末尾段对齐
+    align-items:flex-end;
+  }
+  &-stretch { //子容器沿交叉轴方向的尺寸拉伸至与父容器一致。
+    align-items:stretch;
+  }
+  &-content {
+    align-content: space-between;
+    &-start {
+      align-content: flex-start;
+    }
+  }
+  
+}
+.border-box {
+  box-sizing: border-box;
+}

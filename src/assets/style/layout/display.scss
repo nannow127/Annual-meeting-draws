@@ -1,0 +1,13 @@
+.block {
+  display: block
+}
+
+.hide {
+  display: none;
+}
+.inline {
+  display: inline;
+  &-block {
+    display: inline-block;
+  }
+}

@@ -1,0 +1,46 @@
+
+.po {
+  &_re {
+    position: relative;
+  }
+  &_ab {
+    position: absolute;
+  }
+}
+.top {
+  @for $i from 0 through 20 {
+    &_#{$i} {
+      top: #{$i}px;
+    }
+  }
+}
+.right {
+  @for $i from -20 through 20 {
+    &_#{$i} {
+        right: #{$i}px;
+    }
+  }
+}
+.left {
+  @for $i from 0 through 20 {
+    &_#{$i} {
+        left: #{$i}px;
+    }
+  }
+}
+.bottom {
+  @for $i from 0 through 20 {
+    &_#{$i} {
+      bottom: #{$i}px;
+    }
+  }
+}
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+

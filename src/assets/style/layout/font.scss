@@ -1,0 +1,19 @@
+// 前缀
+// to 不包括end
+// through 包括end
+.ft {
+  &_0 {
+    font-size: 0 !important;
+  }
+  @for $i from 11 to 40 {
+    &_#{$i} {
+      font-size: #{$i}px !important;
+    }
+  }
+}
+fw_700 {
+  font-weight: 700;
+}
+.strong {
+  font-weight: bold;
+}

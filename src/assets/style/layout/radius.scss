@@ -1,0 +1,26 @@
+.rds {
+  border-radius: 100%;
+  @for $i from 0 through 20 {
+    &_#{$i} {
+      border-radius: #{$i}px;
+    }
+  }
+}
+.bor {
+ border: 1px solid #EBEEF5;
+}
+.bor-top {
+  border-top: 1px solid #EBEEF5;
+}
+.bor-right {
+  border-right: 1px solid #EBEEF5;
+}
+.bor-left {
+  border-left: 1px solid #EBEEF5;
+}
+.bor-bottom {
+  border-bottom: 1px solid #EBEEF5;
+}
+.bor-none {
+  border-bottom: none;
+}
